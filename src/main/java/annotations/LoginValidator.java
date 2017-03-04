@@ -1,4 +1,4 @@
-package com.lardi.annotations;
+package annotations;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
