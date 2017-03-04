@@ -1,4 +1,4 @@
-package model;
+package com.lardi.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import annotations.Login;
+
+import com.lardi.annotations.Login;
 
 @Entity
 @Table(name = "user")

@@ -1,4 +1,4 @@
-package model;
+package com.lardi.model;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import annotations.Phone;
+import com.lardi.annotations.Phone;
 
 @Entity
 @Table(name = "contact")
