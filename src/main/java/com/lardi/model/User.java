@@ -29,7 +29,7 @@ public class User implements Serializable {
 	//@Login
 	@Size(min = 3)
 	@Column(name = "login")
-	private String userlogin;
+	private String userLogin;
 
 	@Size(min = 5)
 	@Column(name = "password")
@@ -55,11 +55,11 @@ public class User implements Serializable {
 	}
 
 	public String getUserlogin() {
-		return userlogin;
+		return userLogin;
 	}
 
 	public void setUserlogin(String userlogin) {
-		this.userlogin = userlogin;
+		this.userLogin = userlogin;
 	}
 
 	public String getUserPassword() {
@@ -94,7 +94,7 @@ public class User implements Serializable {
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-		result = prime * result + ((userlogin == null) ? 0 : userlogin.hashCode());
+		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
 		return result;
 	}
 
@@ -127,17 +127,17 @@ public class User implements Serializable {
 				return false;
 		} else if (!userPassword.equals(other.userPassword))
 			return false;
-		if (userlogin == null) {
-			if (other.userlogin != null)
+		if (userLogin == null) {
+			if (other.userLogin != null)
 				return false;
-		} else if (!userlogin.equals(other.userlogin))
+		} else if (!userLogin.equals(other.userLogin))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userlogin=" + userlogin + ", userPassword=" + userPassword + ", fullName="
+		return "User [userId=" + userId + ", userlogin=" + userLogin + ", userPassword=" + userPassword + ", fullName="
 				+ fullName + ", contactsList=" + contactsList + "]";
 	}
 

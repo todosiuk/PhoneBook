@@ -1,4 +1,4 @@
-package com.lardi.daoTest;
+package com.lardi.serviceTest;
 
 import java.util.List;
 
@@ -9,27 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.lardi.app.PhoneBookTest;
-import com.lardi.dao.UserDaoImpl;
 import com.lardi.model.User;
+import com.lardi.service.UserServiceImpl;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PhoneBookTest.class)
-public class UserDaoImplTest {
+public class UserServiceImplTest {
 
 	@Autowired
-	UserDaoImpl userDao;
-	
+	private UserServiceImpl userService;
 
 	@Test
-	public void saveTest() {
+	public void createTest() {
 		User user = new User();
 		user.setUserlogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
-		userDao.create(user);
+		userService.create(user);
 		Assert.assertNotNull(user);
-		
-		
-		
 	}
 
 	@Test
@@ -38,12 +35,15 @@ public class UserDaoImplTest {
 		user.setUserlogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
-		userDao.create(user);
-		List<User> userList = userDao.read();
+		userService.create(user);
+
+		List<User> userList = userService.read();
+
 		Assert.assertEquals("Fiomyfio", userList.get(0).getFullName());
 		Assert.assertEquals("login", userList.get(0).getUserlogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
-
 	}
+	
+	
 
 }

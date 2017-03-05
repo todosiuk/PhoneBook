@@ -22,6 +22,26 @@ public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
+	
+	
+	public Contact() {
+		super();
+	}
+
+	public Contact(String contactSurname, String contactName, String contactPatronymic,
+			String contactMobilePhone, String contactHomePhone, String contactAddress, String contactEmail, User user) {
+		super();
+		this.contactSurname = contactSurname;
+		this.contactName = contactName;
+		this.contactPatronymic = contactPatronymic;
+		this.contactMobilePhone = contactMobilePhone;
+		this.contactHomePhone = contactHomePhone;
+		this.contactAddress = contactAddress;
+		this.contactEmail = contactEmail;
+		this.user = user;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -43,7 +63,7 @@ public class Contact implements Serializable {
 	private String contactPatronymic;
 
 	@NotBlank
-	@Phone
+	//@Phone
 	@Column(name = "mobilePhone")
 	private String contactMobilePhone;
 

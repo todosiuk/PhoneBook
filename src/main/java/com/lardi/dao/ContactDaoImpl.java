@@ -15,15 +15,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lardi.model.Contact;
+import com.lardi.model.User;
 
 @Repository
 @Transactional
-public class ContactDaoImpl {
+public class ContactDaoImpl implements ContactDao<Contact, String> {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void create(Contact contact) {
+	public void create(Integer userId, Contact contact) {
+		User user = entityManager.find(User.class, userId);
+		contact.setUser(user);
 		entityManager.persist(contact);
 	}
 
