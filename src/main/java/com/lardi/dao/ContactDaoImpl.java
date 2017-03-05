@@ -18,7 +18,7 @@ import com.lardi.model.Contact;
 
 @Repository
 @Transactional
-public class ContactDao {
+public class ContactDaoImpl {
 
 	@PersistenceContext
 	private EntityManager entityManager;

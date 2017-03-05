@@ -26,7 +26,7 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	@Login
+	//@Login
 	@Size(min = 3)
 	@Column(name = "login")
 	private String userlogin;
@@ -39,8 +39,12 @@ public class User implements Serializable {
 	@Column(name = "name")
 	private String fullName;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contact")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contactsList;
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Integer getUserId() {
 		return userId;

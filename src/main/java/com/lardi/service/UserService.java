@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.lardi.dao.ContactDao;
-import com.lardi.dao.UserDao;
+import com.lardi.dao.ContactDaoImpl;
+import com.lardi.dao.UserDaoImpl;
 import com.lardi.model.Contact;
 import com.lardi.model.User;
 
 public class UserService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserDaoImpl userDao;
 	@Autowired
-	private ContactDao contactDao;
+	private ContactDaoImpl contactDao;
 	public void create (User user) {
 		userDao.create(user);
 	}
