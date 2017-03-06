@@ -6,10 +6,12 @@ import java.util.List;
 import com.lardi.model.Contact;
 import com.lardi.model.User;
 
-public interface UserService<User, id extends Serializable> {
-	
-	public List <User> read ();
-	
-	public List<User> authorization(String login,String password);
+public interface UserService<T, id extends Serializable> {
+
+	public void create(User user);
+
+	public List<User> read();
+
+	public List<Contact> getContacts(String login, String password);
 
 }

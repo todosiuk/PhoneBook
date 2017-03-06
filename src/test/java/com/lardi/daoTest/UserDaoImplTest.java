@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lardi.app.PhoneBookTest;
 import com.lardi.dao.UserDaoImpl;
 import com.lardi.model.User;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PhoneBookTest.class)
 public class UserDaoImplTest {
 
 	@Autowired
 	UserDaoImpl userDao;
-	
 
 	@Test
 	@Transactional
@@ -30,9 +30,7 @@ public class UserDaoImplTest {
 		user.setFullName("Fiomyfio");
 		userDao.create(user);
 		Assert.assertNotNull(user);
-		
-		
-		
+
 	}
 
 	@Test
