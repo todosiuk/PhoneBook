@@ -14,8 +14,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.lardi.annotations.Phone;
-
 @Entity
 @Table(name = "contact")
 public class Contact implements Serializable {
@@ -63,7 +61,6 @@ public class Contact implements Serializable {
 	private String contactPatronymic;
 
 	@NotBlank
-	//@Phone
 	@Column(name = "mobilePhone")
 	private String contactMobilePhone;
 

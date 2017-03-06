@@ -32,7 +32,7 @@ public class ContactDaoImplTest {
 		user.setUserlogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
-		Contact contact = new Contact("surname", "name", "patronumic", "066-512-59-85", "044-52-85-87", "Kyiv",
+		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
 				"fgh@jhg.com", user);
 		contact.setUser(user);
 		int userId = user.getUserId();
@@ -47,7 +47,7 @@ public class ContactDaoImplTest {
 		user.setUserlogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
-		Contact contact = new Contact("surname", "name", "patronumic", "066-512-59-85", "044-52-85-87", "Kyiv",
+		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
 				"fgh@jhg.com", user);
 		contact.setUser(user);
 		int userId = user.getUserId();
@@ -56,5 +56,9 @@ public class ContactDaoImplTest {
 		Assert.assertEquals(1, list.size());
 		Assert.assertEquals("name", list.get(0).getContactName());
 	}
+	
+	
+	
+	
 
 }

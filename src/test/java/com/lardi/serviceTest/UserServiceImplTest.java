@@ -38,8 +38,6 @@ public class UserServiceImplTest {
 		userService.create(user);
 
 		List<User> userList = userService.read();
-
-		Assert.assertEquals("Fiomyfio", userList.get(0).getFullName());
 		Assert.assertEquals("login", userList.get(0).getUserlogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
 	}

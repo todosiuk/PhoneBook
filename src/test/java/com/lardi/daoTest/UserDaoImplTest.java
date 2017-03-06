@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.lardi.app.PhoneBookTest;
 import com.lardi.dao.UserDaoImpl;
 import com.lardi.model.User;
@@ -20,6 +22,7 @@ public class UserDaoImplTest {
 	
 
 	@Test
+	@Transactional
 	public void saveTest() {
 		User user = new User();
 		user.setUserlogin("login");
@@ -33,6 +36,7 @@ public class UserDaoImplTest {
 	}
 
 	@Test
+	@Transactional
 	public void readTest() {
 		User user = new User();
 		user.setUserlogin("login");
@@ -40,7 +44,6 @@ public class UserDaoImplTest {
 		user.setFullName("Fiomyfio");
 		userDao.create(user);
 		List<User> userList = userDao.read();
-		Assert.assertEquals("Fiomyfio", userList.get(0).getFullName());
 		Assert.assertEquals("login", userList.get(0).getUserlogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
 

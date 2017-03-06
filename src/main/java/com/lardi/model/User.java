@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.lardi.annotations.Login;
-
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
@@ -26,7 +24,7 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	//@Login
+	
 	@Size(min = 3)
 	@Column(name = "login")
 	private String userLogin;
