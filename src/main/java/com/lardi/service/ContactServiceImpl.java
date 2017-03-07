@@ -11,9 +11,6 @@ import com.lardi.model.Contact;
 public class ContactServiceImpl implements ContactService<Contact, String> {
 
 	@Autowired
-	private UserDaoImpl userDao;
-
-	@Autowired
 	private ContactDaoImpl contactDao;
 
 	@Override
