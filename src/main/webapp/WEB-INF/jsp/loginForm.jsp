@@ -3,12 +3,12 @@
 
 <html>
 <head>
-	<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <title>Login Page</title>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="form-group" align="center">
 		<h3>Вход</h3>
 		<c:url var="loginUrl" value="/login"></c:url>
 		<form action="${loginUrl}" method="POST">
@@ -23,10 +23,10 @@
 						name='password' /></td>
 				</tr>
 				<tr>
-					<td><input name="submit" class="btn btn-primary btn-sm"
-						type="submit" value="Вход" /></td>
-					<td><input name="submit" class="btn btn-primary btn-sm"
-						type="submit" value="Регистрация" /></td>
+					<td align="right"><input name="submit"
+						class="btn btn-primary btn-lg" type="submit" value="Вход" /></td>
+					<td align="right"><a
+						href="<c:url value="/registrationController/registrationPage"/>">Регистрация</a></td>
 				</tr>
 			</table>
 		</form>

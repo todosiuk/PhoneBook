@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService<User, String> {
 	public List<Contact> getContacts(String login, String password) {
 		List<User> userList = this.read();
 		for (User user : userList) {
-			if (login == user.getUserlogin() && password == user.getUserPassword()) {
+			if (login == user.getUserLogin() && password == user.getUserPassword()) {
 				List<Contact> contactList = contactDao.search(user.getUserId());
 				return contactList;
 			}

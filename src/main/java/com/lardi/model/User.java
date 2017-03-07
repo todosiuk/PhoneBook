@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,11 +25,12 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	
+	@NotNull
 	@Size(min = 3)
 	@Column(name = "login")
 	private String userLogin;
 
+	@NotNull
 	@Size(min = 5)
 	@Column(name = "password")
 	private String userPassword;
@@ -43,6 +45,17 @@ public class User implements Serializable {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public User(String userLogin, String userPassword, String fullName, List<Contact> contactsList) {
+		this.userLogin = userLogin;
+		this.userPassword = userPassword;
+		this.fullName = fullName;
+		this.contactsList = contactsList;
+	}
+
+
 
 	public Integer getUserId() {
 		return userId;
@@ -52,12 +65,12 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getUserlogin() {
+	public String getUserLogin() {
 		return userLogin;
 	}
 
-	public void setUserlogin(String userlogin) {
-		this.userLogin = userlogin;
+	public void setUserLogin(String userLogin) {
+		this.userLogin = userLogin;
 	}
 
 	public String getUserPassword() {

@@ -25,7 +25,7 @@ public class UserDaoImplTest {
 	@Transactional
 	public void saveTest() {
 		User user = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userDao.create(user);
@@ -37,12 +37,12 @@ public class UserDaoImplTest {
 	@Transactional
 	public void readTest() {
 		User user = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userDao.create(user);
 		List<User> userList = userDao.read();
-		Assert.assertEquals("login", userList.get(0).getUserlogin());
+		Assert.assertEquals("login", userList.get(0).getUserLogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
 
 	}

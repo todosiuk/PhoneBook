@@ -32,7 +32,7 @@ public class UserServiceImplTest {
 	@Transactional
 	public void createTest() {
 		User user = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userService.create(user);
@@ -43,13 +43,13 @@ public class UserServiceImplTest {
 	@Transactional
 	public void readTest() {
 		User user = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userService.create(user);
 
 		List<User> userList = userService.read();
-		Assert.assertEquals("login", userList.get(0).getUserlogin());
+		Assert.assertEquals("login", userList.get(0).getUserLogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
 	}
 
@@ -57,12 +57,12 @@ public class UserServiceImplTest {
 	@Transactional
 	public void getContactsTest() {
 		User user = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userService.create(user);
 		User user1 = new User();
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userService.create(user1);

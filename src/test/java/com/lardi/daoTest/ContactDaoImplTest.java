@@ -29,7 +29,7 @@ public class ContactDaoImplTest {
 	public void createTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
 		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
@@ -45,7 +45,7 @@ public class ContactDaoImplTest {
 	public void readTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
 		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
@@ -63,7 +63,7 @@ public class ContactDaoImplTest {
 	public void deleteTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
 		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
@@ -81,7 +81,7 @@ public class ContactDaoImplTest {
 	public void updateTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
 		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
@@ -100,7 +100,7 @@ public class ContactDaoImplTest {
 	public void searchTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
-		user.setUserlogin("login");
+		user.setUserLogin("login");
 		user.setUserPassword("password");
 		userDao.create(user);
 		Contact contact = new Contact("surname", "name", "patronumic", "+38(066)5125985", "044-52-85-87", "Kyiv",
@@ -110,7 +110,7 @@ public class ContactDaoImplTest {
 		contactDao.create(userId, contact);
 		List<Contact> searchList = contactDao.search(userId);
 		assertEquals(1, searchList.size());
-		assertEquals("login", searchList.get(0).getUser().getUserlogin());
+		assertEquals("login", searchList.get(0).getUser().getUserLogin());
 		assertEquals("+38(066)5125985", searchList.get(0).getContactMobilePhone());
 	}
 
