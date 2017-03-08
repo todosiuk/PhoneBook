@@ -29,12 +29,14 @@ public class UserServiceImpl implements UserService<User, String> {
 
 	public String authorization(String login, String password) {
 		List<User> userList = this.read();
+		String returnLogin = null;
 		for (User user : userList) {
 			if (login == user.getUserLogin() && password == user.getUserPassword()) {
-				return login;
+				returnLogin = login;
+				break;
 			}
 		}
-		return null;
+		return returnLogin;
 	}
 
 	public List<Contact> contactList(Integer userId) {

@@ -97,7 +97,7 @@ public class ContactDaoImplTest {
 
 	@Test
 	@Transactional
-	public void searchTest() {
+	public void searchContactsForUserTest() {
 		User user = new User();
 		user.setFullName("Fiofio");
 		user.setUserLogin("login");
