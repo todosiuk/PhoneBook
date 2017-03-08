@@ -14,5 +14,5 @@ public interface ContactDao<Contact, id extends Serializable> {
 
 	public List<Contact> read();
 
-	public List<Contact> search(Integer userId);
+	public List<Contact> searchContactsForUser(Integer userId);
 }

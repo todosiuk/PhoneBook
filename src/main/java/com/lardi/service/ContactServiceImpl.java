@@ -37,7 +37,7 @@ public class ContactServiceImpl implements ContactService<Contact, String> {
 
 	@Override
 	public List<Contact> search(Integer userId) {
-		return contactDao.search(userId);
+		return contactDao.searchContactsForUser(userId);
 	}
 
 }

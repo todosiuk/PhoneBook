@@ -108,7 +108,7 @@ public class ContactDaoImplTest {
 		contact.setUser(user);
 		int userId = user.getUserId();
 		contactDao.create(userId, contact);
-		List<Contact> searchList = contactDao.search(userId);
+		List<Contact> searchList = contactDao.searchContactsForUser(userId);
 		assertEquals(1, searchList.size());
 		assertEquals("login", searchList.get(0).getUser().getUserLogin());
 		assertEquals("+38(066)5125985", searchList.get(0).getContactMobilePhone());

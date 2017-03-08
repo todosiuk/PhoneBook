@@ -45,7 +45,7 @@ public class ContactDaoImpl implements ContactDao<Contact, String> {
 		return contactList.getResultList();
 	}
 
-	public List<Contact> search(Integer userId) {
+	public List<Contact> searchContactsForUser(Integer userId) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Contact> query = cb.createQuery(Contact.class);
 		Root<Contact> supplyRoot = query.from(entityManager.getMetamodel().entity(Contact.class));

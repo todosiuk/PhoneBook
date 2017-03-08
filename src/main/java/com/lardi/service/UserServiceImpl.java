@@ -27,12 +27,26 @@ public class UserServiceImpl implements UserService<User, String> {
 		return userDao.read();
 	}
 
-	public List<Contact> getContacts(String login, String password) {
+	public String authorization(String login, String password) {
 		List<User> userList = this.read();
 		for (User user : userList) {
 			if (login == user.getUserLogin() && password == user.getUserPassword()) {
-				List<Contact> contactList = contactDao.search(user.getUserId());
-				return contactList;
+				return login;
+			}
+		}
+		return null;
+	}
+
+	public List<Contact> contactList(Integer userId) {
+		List<Contact> contactList = contactDao.searchContactsForUser(userId);
+		return contactList;
+	}
+
+	public Integer getUserId(String userLogin) {
+		List<User> userList = this.read();
+		for (User user : userList) {
+			if (user.getUserLogin() == userLogin) {
+				return user.getUserId();
 			}
 		}
 		return null;

@@ -32,7 +32,7 @@ public class RegistrationController {
 			return "success";
 		} else {
 			model.addAttribute("msg", "Логин должен содержать только латинские буквы");
-			return "success";
+			return "userError";
 		}
 
 	}

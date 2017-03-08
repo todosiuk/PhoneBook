@@ -33,6 +33,7 @@
 					<td align="right"><input name="submit"
 						class="btn btn-primary btn-lg" type="submit" value="Регистрация" /></td>
 				</tr>
+				
 			</table>
 		</form:form>
 	</div>
