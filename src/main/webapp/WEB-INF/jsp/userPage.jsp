@@ -11,7 +11,16 @@
 
 	<div class="container-fluid" align="center">
 		<h3>Страница пользователя</h3>
-		<c:out value="${user.fullName}" />
+		<table class="table">
+			<thead style="background: #9AC0CD">
+				<th>Дата поставки</th>
+			</thead>
+			<c:forEach items="${user}" var="searchList">
+				<tr>
+					<td><c:out value="${searchList.fullName}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 
 </body>

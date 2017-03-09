@@ -24,18 +24,18 @@ public class UserServiceImpl implements UserService<User, String> {
 		return userDao.read();
 	}
 
-	public User findUserByLogin(String login) {
-		User user = userDao.findUserByLogin(login);
+	public List<User> findUserByLogin(String login) {
+		List<User> user = userDao.findUserByLogin(login);
 		return user;
 	}
 
 	public boolean aut(String login, String password) {
-		boolean access;
-		User user = this.findUserByLogin(login);
-		if (user != null && user.getUserPassword() == password) {
-			access = true;
-		} else {
-			access = false;
+		boolean access = false;
+		List<User> user = this.findUserByLogin(login);
+		for (User userList : user) {
+			if (userList != null && userList.getUserPassword() == password) {
+				access = true;
+			}
 		}
 		return access;
 	}
