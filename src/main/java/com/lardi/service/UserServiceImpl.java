@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.lardi.dao.ContactDaoImpl;
 import com.lardi.dao.UserDaoImpl;
-import com.lardi.model.Contact;
 import com.lardi.model.User;
-import com.lardi.validator.LoginValidator;
 
 @Service
 public class UserServiceImpl implements UserService<User, String> {
@@ -27,30 +24,19 @@ public class UserServiceImpl implements UserService<User, String> {
 		return userDao.read();
 	}
 
-	public String authorization(String login, String password) {
-		List<User> userList = this.read();
-		String returnLogin = null;
-		for (User user : userList) {
-			if (login == user.getUserLogin() && password == user.getUserPassword()) {
-				returnLogin = login;
-				break;
-			}
-		}
-		return returnLogin;
+	public User findUserByLogin(String login) {
+		User user = userDao.findUserByLogin(login);
+		return user;
 	}
 
-	public List<Contact> contactList(Integer userId) {
-		List<Contact> contactList = contactDao.searchContactsForUser(userId);
-		return contactList;
-	}
-
-	public Integer getUserId(String userLogin) {
-		List<User> userList = this.read();
-		for (User user : userList) {
-			if (user.getUserLogin() == userLogin) {
-				return user.getUserId();
-			}
+	public boolean aut(String login, String password) {
+		boolean access;
+		User user = this.findUserByLogin(login);
+		if (user != null && user.getUserPassword() == password) {
+			access = true;
+		} else {
+			access = false;
 		}
-		return null;
+		return access;
 	}
 }

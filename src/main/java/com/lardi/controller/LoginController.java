@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.lardi.model.Contact;
+import com.lardi.model.User;
+import com.lardi.service.ContactServiceImpl;
 import com.lardi.service.UserServiceImpl;
 
 @Controller
@@ -15,6 +17,9 @@ public class LoginController {
 
 	@Autowired
 	UserServiceImpl userService;
+
+	@Autowired
+	ContactServiceImpl contactService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -27,26 +32,15 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/enter", method = RequestMethod.POST)
-	public String enter(@RequestParam(value = "userLogin", required = false) String userLogin,
-			@RequestParam(value = "userPassword", required = false) String userPassword, Model model) {
-		
-			String login = userService.authorization(userLogin, userPassword);
-			
-			if (login != null && !login.isEmpty()) {
-				
-				Integer userId = userService.getUserId(login);
-				List<Contact> contactList = userService.contactList(userId);
-				
-				model.addAttribute("contactList", contactList);
-				
-				return "user";
-				
-			} else {
-				
-				model.addAttribute("msg", "Пользователь отсутствует в базе. Зарегистрируйтесь.");
-				
-				return "userError";
-			}
+	public String enter(@RequestParam(value = "userLogin", required = true) String userLogin,
+			@RequestParam(value = "userPassword", required = true) String userPassword, Model model) {
+		boolean autRet = userService.aut(userLogin, userPassword);
+		if (autRet == true) {
+			User user = userService.findUserByLogin(userLogin);
+			model.addAttribute("user", user);
+			return "userPage";
+		} else {
+			return "loginForm";
 		}
 	}
-
+}

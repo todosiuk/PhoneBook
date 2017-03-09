@@ -11,7 +11,8 @@
 
 	<div class="container-fluid" align="center">
 		<h3>Страница пользователя</h3>
+		<c:out value="${user.fullName}" />
 	</div>
-	
+
 </body>
 </html>

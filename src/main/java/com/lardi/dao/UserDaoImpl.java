@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
@@ -27,4 +28,12 @@ public class UserDaoImpl implements UserDao<User, String> {
 		TypedQuery<User> contactList = entityManager.createQuery(query, User.class);
 		return contactList.getResultList();
 	}
+
+	public User findUserByLogin(String userLogin) {
+		String query = "select u from User u where u.userLogin = :userLogin";
+		TypedQuery<User> user = entityManager.createQuery(query, User.class).setParameter("userLogin", userLogin);
+		return user.getSingleResult();
+	}
+	
+	
 }

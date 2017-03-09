@@ -47,4 +47,16 @@ public class UserDaoImplTest {
 
 	}
 
+	@Test
+	@Transactional
+	public void findUserByLoginTest() {
+		User user = new User();
+		user.setUserLogin("login");
+		user.setUserPassword("password");
+		user.setFullName("Fiomyfio");
+		userDao.create(user);
+		User findUser = userDao.findUserByLogin(user.getUserLogin());
+		Assert.assertNotNull(findUser);
+	}
+
 }

@@ -58,15 +58,10 @@ public class LoginControllerTest {
 		user.setFullName("Fiomyfio");
 		userService.create(user);
 
-		String login = userService.authorization(user.getUserLogin(), user.getUserPassword());
-		Integer userId = userService.getUserId(login);
-		Assert.assertNotNull(login);
-		Assert.assertNotNull(userId);
-
 		Mockito.verify(userService).create(user);
 
-		mockMvc.perform(post("/loginController/enter").param("userLogin", user.getUserLogin()).param("userPassword",
-				user.getUserPassword())).andExpect(status().isOk()).andExpect(view().name("user"))
-				.andExpect(model().attributeExists("userAttribute"));
+		mockMvc.perform(post("/enter").param("userLogin", user.getUserLogin()).param("userPassword",
+				user.getUserPassword())).andExpect(status().isOk()).andExpect(view().name("userPage"))
+				.andExpect(model().attributeExists("user"));
 	}
 }

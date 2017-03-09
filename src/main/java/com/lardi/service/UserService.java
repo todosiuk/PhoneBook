@@ -12,6 +12,6 @@ public interface UserService<T, id extends Serializable> {
 
 	public List<User> read();
 
-	public String authorization(String login, String password);
+	public User findUserByLogin(String login);
 
 }
