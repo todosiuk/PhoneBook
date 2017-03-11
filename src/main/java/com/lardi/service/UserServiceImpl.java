@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.lardi.dao.ContactDaoImpl;
 import com.lardi.dao.UserDaoImpl;
+import com.lardi.model.Contact;
 import com.lardi.model.User;
 
 @Service
@@ -24,19 +25,23 @@ public class UserServiceImpl implements UserService<User, String> {
 		return userDao.read();
 	}
 
-	public List<User> findUserByLogin(String login) {
-		List<User> user = userDao.findUserByLogin(login);
+	public User findUserByLogin(String login) {
+		User user = userDao.findUserByLogin(login);
 		return user;
 	}
 
 	public boolean aut(String login, String password) {
 		boolean access = false;
-		List<User> user = this.findUserByLogin(login);
-		for (User userList : user) {
-			if (userList != null && userList.getUserPassword() == password) {
-				access = true;
-			}
+		User user = this.findUserByLogin(login);
+
+		if (user != null && user.getUserPassword() == password) {
+			access = true;
+
 		}
 		return access;
+	}
+
+	public User findById(Integer userId) {
+		return userDao.findById(userId);
 	}
 }

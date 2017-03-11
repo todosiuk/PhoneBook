@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.lardi.model.Contact;
 import com.lardi.model.User;
 import com.lardi.service.ContactServiceImpl;
 import com.lardi.service.UserServiceImpl;
@@ -21,7 +23,7 @@ public class LoginController {
 	@Autowired
 	ContactServiceImpl contactService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home() {
 		return "loginForm";
 	}
@@ -36,10 +38,12 @@ public class LoginController {
 			@RequestParam(value = "userPassword", required = true) String userPassword, Model model) {
 		boolean autRet = userService.aut(userLogin, userPassword);
 		if (autRet == true) {
-			model.addAttribute("user", userService.findUserByLogin(userLogin));
-			
+			User user = userService.findUserByLogin(userLogin);
+			List<Contact> list = contactService.search(user.getUserId());
+			model.addAttribute("user", user);
+			model.addAttribute("list", list);
 
 		}
-			return "";
+		return "userPage";
 	}
 }

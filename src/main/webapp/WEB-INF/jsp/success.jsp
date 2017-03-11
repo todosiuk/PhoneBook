@@ -12,7 +12,7 @@
 <body>
 	<div class="container-fluid" align="center">
 		<h3>${msg }</h3>
-		<c:url var="mainUrl" value="/" />
+		<c:url var="mainUrl" value="/login" />
 		<p>
 			<a href="${mainUrl}" input type="submit" class="btn btn-primary">Войти</a>
 		</p>

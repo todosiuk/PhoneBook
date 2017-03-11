@@ -55,7 +55,7 @@ public class UserDaoImplTest {
 		user.setUserPassword("password");
 		user.setFullName("Fiomyfio");
 		userDao.create(user);
-		List<User> findUser = userDao.findUserByLogin(user.getUserLogin());
+		User findUser = userDao.findUserByLogin(user.getUserLogin());
 		Assert.assertNotNull(findUser);
 	}
 

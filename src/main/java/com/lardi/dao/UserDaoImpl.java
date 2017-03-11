@@ -29,10 +29,14 @@ public class UserDaoImpl implements UserDao<User, String> {
 		return contactList.getResultList();
 	}
 
-	public List<User> findUserByLogin(String userLogin) {
+	public User findUserByLogin(String userLogin) {
 		String query = "select u from User u where u.userLogin = :userLogin";
 		TypedQuery<User> user = entityManager.createQuery(query, User.class).setParameter("userLogin", userLogin);
-		return user.getResultList();
+		return user.getSingleResult();
+	}
+
+	public User findById(Integer userId) {
+		return entityManager.find(User.class, userId);
 	}
 
 }

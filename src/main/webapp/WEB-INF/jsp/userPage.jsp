@@ -4,24 +4,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Страница пользователя</title>
 </head>
 <body>
 
-	<div class="container-fluid" align="center">
-		<h3>Страница пользователя</h3>
-		<table class="table">
-			<thead style="background: #9AC0CD">
-				<th>Дата поставки</th>
-			</thead>
-			<c:forEach items="${user}" var="searchList">
-				<tr>
-					<td><c:out value="${searchList.fullName}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
-
+	<table class="table">
+		<thead style="background: #9AC0CD">
+			<tr>
+				<th>Пользователь</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				<td><a href="${addContact}" input type="submit"
+					class="btn btn-primary">Добавить контакт</a></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
