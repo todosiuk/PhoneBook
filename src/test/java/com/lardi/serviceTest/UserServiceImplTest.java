@@ -50,28 +50,4 @@ public class UserServiceImplTest {
 		Assert.assertEquals("login", userList.get(0).getUserLogin());
 		Assert.assertEquals("password", userList.get(0).getUserPassword());
 	}
-
-	@Test
-	@Transactional
-	public void autTestTrue() {
-		User user = new User();
-		user.setUserLogin("login");
-		user.setUserPassword("password");
-		user.setFullName("Fiomyfio");
-		userService.create(user);
-		boolean aut = userService.aut("login", "password");
-		Assert.assertEquals(true, aut);
-	}
-
-	@Test
-	@Transactional
-	public void autTestFalse() {
-		User user = new User();
-		user.setUserLogin("login");
-		user.setUserPassword("password");
-		user.setFullName("Fiomyfio");
-		userService.create(user);
-		boolean aut = userService.aut("login", "pasword");
-		Assert.assertEquals(false, aut);
-	}
 }

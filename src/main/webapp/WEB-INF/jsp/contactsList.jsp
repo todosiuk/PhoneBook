@@ -9,5 +9,9 @@
 </head>
 <body>
 <h1>Список контактов</h1>
+<c:forEach items="${user}" var="provider">
+
+<h3><c:out value="${provider.fullName }" /></h3>
+</c:forEach>
 </body>
 </html>

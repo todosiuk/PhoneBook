@@ -10,7 +10,7 @@
 <body>
 	<div class="form-group" align="center">
 		<h3>Вход</h3>
-		<c:url var="loginUrl" value="/enter"></c:url>
+		<c:url var="loginUrl" value="/enter"/>
 		<form action="${loginUrl}" method="POST">
 			<table>
 				<tr>
