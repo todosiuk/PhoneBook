@@ -8,10 +8,10 @@ import com.lardi.model.User;
 
 public interface UserService<T, id extends Serializable> {
 
-	public void create(User user);
+	public void save (User user);
 
-	public List<User> read();
+	public List<User> findAll();
 
-	//public List<User> findUserByLogin(String login);
+	public User findUserByLogin(String login);
 
 }

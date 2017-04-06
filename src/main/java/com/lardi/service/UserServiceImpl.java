@@ -1,47 +1,36 @@
 package com.lardi.service;
 
+import java.util.HashSet;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.lardi.dao.ContactDaoImpl;
-import com.lardi.dao.UserDaoImpl;
-import com.lardi.model.Contact;
 import com.lardi.model.User;
+import com.lardi.repository.RoleRepository;
+import com.lardi.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService<User, String> {
 
 	@Autowired
-	private UserDaoImpl userDao;
+	private UserRepository userRepository;
 	@Autowired
-	private ContactDaoImpl contactDao;
+	private RoleRepository roleRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public void create(User user) {
-		userDao.create(user);
+	public void save(User user) {
+		user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
+		user.setRoles(new HashSet<>(roleRepository.findAll()));
+		userRepository.save(user);
 	}
 
-	public List<User> read() {
-		return userDao.read();
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
-	/*public List<User> findUserByLogin(String login) {
-		List<User> user = userDao.findUserByLogin(login);
-		return user;
-	}
-
-	public boolean aut(String login, String password) {
-		boolean access = false;
-		List<User> user = this.findUserByLogin(login);
-		for (User userList : user) {
-			if (userList != null && userList.getUserPassword() == password) {
-				access = true;
-			}
-		}
-		return access;
-	}**/
-
-	public User findById(Integer userId) {
-		return userDao.findById(userId);
+	@Override
+	public User findUserByLogin(String login) {
+		return userRepository.findByUserLogin(login);
 	}
 }

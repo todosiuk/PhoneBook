@@ -42,8 +42,9 @@ public class User implements Serializable {
 	@Size(min = 5)
 	@Column(name = "name")
 	private String fullName;
-	
-	
+
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -52,8 +53,6 @@ public class User implements Serializable {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public User(String userLogin, String userPassword, String fullName, List<Contact> contactsList) {
 		this.userLogin = userLogin;
@@ -61,8 +60,6 @@ public class User implements Serializable {
 		this.fullName = fullName;
 		this.contactsList = contactsList;
 	}
-
-
 
 	public Integer getUserId() {
 		return userId;
@@ -105,7 +102,7 @@ public class User implements Serializable {
 	}
 
 	@ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	public Set<Role> getRoles() {
 		return roles;
 	}
