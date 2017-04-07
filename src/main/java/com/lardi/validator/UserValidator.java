@@ -1,15 +1,17 @@
 package com.lardi.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
 import com.lardi.model.User;
 import com.lardi.service.UserService;
 
+@Component
 public class UserValidator implements Validator {
 
+	@SuppressWarnings("rawtypes")
 	@Autowired
 	private UserService userService;
 
@@ -23,17 +25,17 @@ public class UserValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userLogin", "NotEmpty");
 		if (user.getUserLogin().length() < 6 || user.getUserLogin().length() > 32) {
-			errors.rejectValue("username", "Size.userForm.username");
+			errors.rejectValue("userLogin", "Size.userForm.userLogin");
 		}
 		if (userService.findUserByLogin(user.getUserLogin()) != null) {
-			errors.rejectValue("username", "Duplicate.userForm.username");
+			errors.rejectValue("userLogin", "Duplicate.userForm.userLogin");
 		}
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPassword", "NotEmpty");
 		if (user.getUserPassword().length() < 8 || user.getUserPassword().length() > 32) {
-			errors.rejectValue("password", "Size.userForm.password");
+			errors.rejectValue("userPassword", "Size.userForm.userPassword");
 		}
 	}
 
