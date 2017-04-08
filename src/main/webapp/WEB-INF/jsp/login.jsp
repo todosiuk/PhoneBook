@@ -28,8 +28,8 @@
 			value="${_csrf.token}" />
 
 		<div>
-			<label for="email">Email address</label> <input type="email"
-				name="email" id="email" required autofocus />
+			<label for="login">Login</label> <input type="text"
+				name="login" id="login" required autofocus />
 		</div>
 		<div>
 			<label for="password">Password</label> <input type="password"
@@ -40,12 +40,12 @@
 				name="remember-me" id="remember-me" />
 		</div>
 		<button type="submit">Sign in</button>
-		<h4 class="text-center">
+		<h4 class="text-left">
 			<a href="${contextPath}/user/create">Create an account</a>
 		</h4>
 	</form>
 
-	<#if error.isPresent()>
+	<#iferror.isPresent()>
 	<p>The email or password you have entered is invalid, try again.</p>
 	</#if>
 

@@ -2,9 +2,7 @@ package com.lardi.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 /*
@@ -13,13 +11,12 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 public class UserCreateForm {
-
 	@NotEmpty
 	private String login = "";
 
 	@NotEmpty
 	private String password = "";
-	
+
 	private String passwordRepeated = "";
 
 	@NotEmpty
