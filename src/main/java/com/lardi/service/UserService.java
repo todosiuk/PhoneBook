@@ -1,17 +1,18 @@
 package com.lardi.service;
 
-import java.io.Serializable;
-import java.util.List;
-
-import com.lardi.model.Contact;
+import java.util.Collection;
+import java.util.Optional;
 import com.lardi.model.User;
+import com.lardi.model.UserCreateForm;
 
-public interface UserService<T, id extends Serializable> {
+public interface UserService {
 
-	public void save (User user);
+	Optional<User> getUserById(int id);
 
-	public List<User> findAll();
+	Optional<User> getUserByLogin(String login);
 
-	public User findUserByLogin(String login);
+	Collection<User> getAllUsers();
+
+	User create(UserCreateForm form);
 
 }

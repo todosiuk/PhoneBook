@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,23 +31,21 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	@NotNull
 	@Size(min = 3)
-	@Column(name = "login")
+	@Column(name = "login", nullable = false, unique = true)
 	private String userLogin;
 
-	@NotNull
 	@Size(min = 5)
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String userPassword;
 
 	@Size(min = 5)
 	@Column(name = "name")
 	private String fullName;
 
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles;
+	@Column(name = "role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contactsList;
@@ -101,14 +101,12 @@ public class User implements Serializable {
 		this.contactsList = contactsList;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	public Set<Role> getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
@@ -117,9 +115,10 @@ public class User implements Serializable {
 		int result = 1;
 		result = prime * result + ((contactsList == null) ? 0 : contactsList.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
 		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
+		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
 		return result;
 	}
 
@@ -142,28 +141,33 @@ public class User implements Serializable {
 				return false;
 		} else if (!fullName.equals(other.fullName))
 			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
 		} else if (!userId.equals(other.userId))
-			return false;
-		if (userPassword == null) {
-			if (other.userPassword != null)
-				return false;
-		} else if (!userPassword.equals(other.userPassword))
 			return false;
 		if (userLogin == null) {
 			if (other.userLogin != null)
 				return false;
 		} else if (!userLogin.equals(other.userLogin))
 			return false;
+		if (userPassword == null) {
+			if (other.userPassword != null)
+				return false;
+		} else if (!userPassword.equals(other.userPassword))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userlogin=" + userLogin + ", userPassword=" + userPassword + ", fullName="
-				+ fullName + ", contactsList=" + contactsList + "]";
+		return "User [userId=" + userId + ", userLogin=" + userLogin + ", userPassword=" + userPassword + ", fullName="
+				+ fullName + ", role=" + role + ", contactsList=" + contactsList + "]";
 	}
 
 }
