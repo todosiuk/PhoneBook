@@ -1,10 +1,8 @@
 package com.lardi.service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.lardi.model.User;
@@ -29,11 +27,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> getUserByLogin(String login) {
 		return userRepository.findByUserLogin(login);
-	}
-
-	@Override
-	public Collection<User> getAllUsers() {
-		return userRepository.findAll(new Sort("login"));
 	}
 
 	@Override
