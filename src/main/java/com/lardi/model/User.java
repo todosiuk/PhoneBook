@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,21 +32,21 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	@Size(min = 3)
-	@Column(name = "login", nullable = false, unique = true)
-	private String userLogin;
+	@Column(name = "username")
+	private String username;
 
-	@Size(min = 5)
-	@Column(name = "password", nullable = false)
-	private String userPassword;
+	//@Column(name = "password", nullable = false)
+	private String password;
 
-	@Size(min = 5)
+	@Transient
+	private String passwordConfirm;
+
 	@Column(name = "name")
 	private String fullName;
 
-	@Column(name = "role", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contactsList;
@@ -54,9 +55,9 @@ public class User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userLogin, String userPassword, String fullName, List<Contact> contactsList) {
-		this.userLogin = userLogin;
-		this.userPassword = userPassword;
+	public User(String username, String userPassword, String fullName, List<Contact> contactsList) {
+		this.username = username;
+		this.password = userPassword;
 		this.fullName = fullName;
 		this.contactsList = contactsList;
 	}
@@ -69,20 +70,28 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getUserLogin() {
-		return userLogin;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserLogin(String userLogin) {
-		this.userLogin = userLogin;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public String getFullName() {
@@ -93,6 +102,14 @@ public class User implements Serializable {
 		this.fullName = fullName;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	public List<Contact> getContactsList() {
 		return contactsList;
 	}
@@ -101,24 +118,17 @@ public class User implements Serializable {
 		this.contactsList = contactsList;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((contactsList == null) ? 0 : contactsList.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
-		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -141,33 +151,40 @@ public class User implements Serializable {
 				return false;
 		} else if (!fullName.equals(other.fullName))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (password == null) {
+			if (other.password != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!password.equals(other.password))
+			return false;
+		if (passwordConfirm == null) {
+			if (other.passwordConfirm != null)
+				return false;
+		} else if (!passwordConfirm.equals(other.passwordConfirm))
+			return false;
+		if (roles == null) {
+			if (other.roles != null)
+				return false;
+		} else if (!roles.equals(other.roles))
 			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
 		} else if (!userId.equals(other.userId))
 			return false;
-		if (userLogin == null) {
-			if (other.userLogin != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!userLogin.equals(other.userLogin))
-			return false;
-		if (userPassword == null) {
-			if (other.userPassword != null)
-				return false;
-		} else if (!userPassword.equals(other.userPassword))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userLogin=" + userLogin + ", userPassword=" + userPassword + ", fullName="
-				+ fullName + ", role=" + role + ", contactsList=" + contactsList + "]";
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", passwordConfirm="
+				+ passwordConfirm + ", fullName=" + fullName + ", roles=" + roles + ", contactsList=" + contactsList
+				+ "]";
 	}
 
+	
 }

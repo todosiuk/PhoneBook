@@ -1,42 +1,35 @@
 package com.lardi.service;
 
-import java.util.Optional;
-
+import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.lardi.model.User;
-import com.lardi.model.UserCreateForm;
+import com.lardi.repository.RoleRepository;
 import com.lardi.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	private final UserRepository userRepository;
-
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	private UserRepository userRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Override
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	@Override
-	public Optional<User> getUserById(int id) {
-		return Optional.ofNullable(userRepository.findOne(id));
+	public void save(User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setRoles(new HashSet<>(roleRepository.findAll()));
+		userRepository.save(user);
+
 	}
 
-	@Override
-	public Optional<User> getUserByLogin(String login) {
-		return userRepository.findByUserLogin(login);
-	}
-
-	@Override
-	public User create(UserCreateForm form) {
-		User user = new User();
-		user.setUserLogin(form.getLogin());
-		user.setUserPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
-		user.setFullName(form.getName());
-		user.setRole(form.getRole());
-		user.setContactsList(form.getContactsList());
-		return userRepository.save(user);
-	}
 }
