@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -34,8 +36,8 @@
 			</form>
 
 			<h2>
-				Welcome ${pageContext.request.userPrincipal.name} | <a
-					onclick="document.forms['logoutForm'].submit()">Logout</a>
+				Добро пожаловать ${pageContext.request.userPrincipal.name} | <a
+					onclick="document.forms['logoutForm'].submit()">Выход</a>
 			</h2>
 
 		</c:if>

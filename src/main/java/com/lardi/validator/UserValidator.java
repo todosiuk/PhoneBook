@@ -25,18 +25,18 @@ public class UserValidator implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-			errors.rejectValue("username", "Логин должен быть не меньше 6 символов");
+			errors.rejectValue("username", "Size.userForm.username");
 		}
 		if (userService.findByUsername(user.getUsername()) != null) {
-			errors.rejectValue("username", "Логин уже существует");
+			errors.rejectValue("username", "Duplicate.userForm.username");
 		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
 		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-			errors.rejectValue("password", "Пароль должен содержать от 8 до 32 символов");
+			errors.rejectValue("password", "Size.userForm.password");
 		}
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
-			errors.rejectValue("passwordConfirm", "Данный пароль не используется");
+			errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
 		}
 
 	}

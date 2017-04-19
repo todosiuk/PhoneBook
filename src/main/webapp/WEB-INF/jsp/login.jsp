@@ -12,26 +12,26 @@
 </head>
 <body >
 	<c:if test="${param.error ne null}">
-		<div>Неверное имя пользователя и/или пароль.</div>
+		<div><h2><font color ="red">Неверное имя пользователя и/или пароль.</font></h2></div>
 	</c:if>
 	<c:if test="${param.logout ne null}">
 		<div>You have been logged out.</div>
 	</c:if>
 	<form action="/login" method="post" class="form-signin">
 		<div class="form-group" align = "center">
-			<h4 class="form-signin-heading"> User Name : <input type="text" name="username"
+			<h4 class="form-signin-heading"> Имя пользователя : <input type="text" name="username"
 				class="form-control" /></h4>
 			
 		</div>
 		<div class="form-group" align = "center">
-			<h4 class="form-signin-heading"> Password: <input type="password" name="password"
+			<h4 class="form-signin-heading"> Пароль: <input type="password" name="password"
 				class="form-control" /></h4>
 			
 		</div>
 		<div class="form-group" align = "center">
 			<input type="submit" value="Sign In" class="btn btn-primary" />
 			</p>
-			<a href="${contextPath}/registration">Create an account</a>
+			<a href="${contextPath}/registration">Создать пользователя</a>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
