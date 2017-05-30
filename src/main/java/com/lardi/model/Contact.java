@@ -28,7 +28,7 @@ public class Contact implements Serializable {
 	}
 
 	public Contact(String contactSurname, String contactName, String contactPatronymic,
-			String contactMobilePhone, String contactHomePhone, String contactAddress, String contactEmail, User user) {
+			String contactMobilePhone, String contactHomePhone, String contactAddress, String contactEmail, Users user) {
 		super();
 		this.contactSurname = contactSurname;
 		this.contactName = contactName;
@@ -76,7 +76,7 @@ public class Contact implements Serializable {
 
 	@ManyToOne(cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "user_iduser")
-	private User user;
+	private Users user;
 
 	public Integer getContactId() {
 		return contactId;
@@ -142,11 +142,11 @@ public class Contact implements Serializable {
 		this.contactEmail = contactEmail;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import com.lardi.model.User;
+
+import com.lardi.model.Users;
 import com.lardi.service.UserService;
 
 @Component
@@ -16,12 +17,12 @@ public class UserValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> aClass) {
-		return User.class.equals(aClass);
+		return Users.class.equals(aClass);
 	}
 
 	@Override
 	public void validate(Object o, Errors errors) {
-		User user = (User) o;
+		Users user = (Users) o;
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {

@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.lardi.model.User;
+import com.lardi.model.Users;
 import com.lardi.service.SecurityService;
 import com.lardi.service.UserService;
 import com.lardi.validator.UserValidator;
@@ -26,13 +26,13 @@ public class UserController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
-		model.addAttribute("userForm", new User());
+		model.addAttribute("userForm", new Users());
 
 		return "registration";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+	public String registration(@ModelAttribute("userForm") Users userForm, BindingResult bindingResult, Model model) {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {

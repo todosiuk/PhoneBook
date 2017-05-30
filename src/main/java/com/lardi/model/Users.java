@@ -22,8 +22,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "users")
+public class Users implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Integer userId;
 
-	@Column(name = "username")
+	@Column(name = "login")
 	private String username;
 
 	@Column(name = "password", nullable = false)
@@ -41,7 +41,7 @@ public class User implements Serializable {
 	@Transient
 	private String passwordConfirm;
 
-	@Column(name = "name")
+	@Column(name = "fullName")
 	private String fullName;
 
 	@ManyToMany
@@ -51,11 +51,11 @@ public class User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contactsList;
 
-	public User() {
+	public Users() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String userPassword, String fullName, List<Contact> contactsList) {
+	public Users(String username, String userPassword, String fullName, List<Contact> contactsList) {
 		this.username = username;
 		this.password = userPassword;
 		this.fullName = fullName;
@@ -140,7 +140,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Users other = (Users) obj;
 		if (contactsList == null) {
 			if (other.contactsList != null)
 				return false;

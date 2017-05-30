@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lardi.model.Contact;
-import com.lardi.model.User;
+import com.lardi.model.Users;
 import com.lardi.repository.ContactRepository;
 import com.lardi.repository.UserRepository;
 
@@ -20,7 +20,7 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public void save(Integer idUser, Contact contact) {
-		User user = userRepository.getOne(idUser);
+		Users user = userRepository.getOne(idUser);
 		contact.setUser(user);
 		contactRepository.saveAndFlush(contact);
 	}
