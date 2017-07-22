@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.lardi.PhoneBookApplication;
 import com.lardi.model.Users;
 import com.lardi.repository.UserRepository;
+import com.lardi.repositoryTest.util.UsersUtil;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { PhoneBookApplication.class })
@@ -32,6 +33,14 @@ public class UserRepositoryTest {
 	public void findByUsernameNegativeTest() {
 		Users user = this.repository.findByUsername("user2");
 		Assert.assertNull(user);
+
+	}
+
+	@Test
+	public void saveUserTest() {
+		repository.saveAndFlush(UsersUtil.createUsers());
+		Users user = this.repository.findByUsername("testUser");
+		Assert.assertNotNull(user);
 
 	}
 }
