@@ -13,7 +13,7 @@ CREATE TABLE users (
 id int(11)  NOT NULL auto_increment,
 login varchar(255), 
 password varchar(255),
-fullName varchar (255),
+full_name varchar (255),
 primary key (id)
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 

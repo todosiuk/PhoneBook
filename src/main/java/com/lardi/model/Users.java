@@ -41,7 +41,7 @@ public class Users implements Serializable {
 	@Transient
 	private String passwordConfirm;
 
-	@Column(name = "fullName")
+	@Column(name = "full_name")
 	private String fullName;
 
 	@ManyToMany
